@@ -48,7 +48,7 @@ static void audio_sdl_play(const uint8_t *buf, size_t len) {
 #else
         uint8_t *mix_buf[len];
         SDL_memset(mix_buf, 0, len);
-        SDL_MixAudioFormat(mix_buf, buf, AUDIO_S16, len, SDL_MIX_MAXVOLUME * configOverallVolume);
+        SDL_MixAudioFormat((Uint8*)mix_buf, buf, AUDIO_S16, len, SDL_MIX_MAXVOLUME * configOverallVolume);
         SDL_QueueAudio(dev, mix_buf, len);
 #endif
     }

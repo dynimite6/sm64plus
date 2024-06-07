@@ -3194,6 +3194,9 @@ void update_lakitu(struct Camera *c) {
     gLakituState.defMode = c->defMode;
 }
 
+void manual_cam_modes(struct Camera *c);
+void mario_cam_modes(struct Camera *c);
+void lakitu_cam_modes(struct Camera *c);
 
 /**
  * The main camera update function.
