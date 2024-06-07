@@ -5,7 +5,9 @@
 #include <string.h>
 #include <assert.h>
 #include <ctype.h>
+#ifdef __linux__
 #include <sys/stat.h>
+#endif
 
 #include "configfile.h"
 #include "../game/settings.h"
