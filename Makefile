@@ -688,6 +688,7 @@ $(BUILD_DIR)/%: %.png
 
 $(BUILD_DIR)/%.inc.c: $(BUILD_DIR)/% %.png
 	hexdump -v -e '1/1 "0x%X,"' $< > $@
+	echo "0x00" >> $@
 	echo >> $@
 
 else
