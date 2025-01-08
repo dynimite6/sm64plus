@@ -35,7 +35,8 @@
 static SDL_Window *wnd;
 static int inverted_scancode_table[512];
 static int vsync_enabled = 0;
-
+static unsigned int window_width;
+static unsigned int window_height;
 static bool fullscreen_state;
 static void (*on_fullscreen_changed_callback)(bool is_now_fullscreen);
 static bool (*on_key_down_callback)(int scancode);
@@ -98,9 +99,6 @@ const SDL_Scancode scancode_rmapping_nonextended[][2] = {
 };
 
 static void set_fullscreen(bool on, bool call_callback) {
-    unsigned int window_width;
-    unsigned int window_height;
-
     if (fullscreen_state == on) {
         return;
     }
@@ -119,8 +117,8 @@ static void set_fullscreen(bool on, bool call_callback) {
         else {
             SDL_GetDesktopDisplayMode(0, &mode);
         }
-        window_width = mode.w;
-        window_height = mode.h;
+        SDL_SetWindowSize(wnd, mode.w, mode.h);
+        SDL_SetWindowFullscreen(wnd, configCustomFullscreenResolution ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_FULLSCREEN_DESKTOP);
         SDL_ShowCursor(false);
     } else {
         if (configCustomFullscreenResolution) {
@@ -128,16 +126,9 @@ static void set_fullscreen(bool on, bool call_callback) {
             SDL_GetDesktopDisplayMode(0, &mode);
             SDL_SetWindowDisplayMode(wnd, &mode);
         }
-        window_width = DESIRED_SCREEN_WIDTH;
-        window_height = DESIRED_SCREEN_HEIGHT;
+        SDL_SetWindowFullscreen(wnd, 0);
+        SDL_SetWindowSize(wnd, window_width, window_height);
         SDL_ShowCursor(true);
-    }
-    SDL_SetWindowSize(wnd, window_width, window_height);
-    if (configCustomFullscreenResolution) {
-        SDL_SetWindowFullscreen(wnd, on ? SDL_WINDOW_FULLSCREEN : 0);
-    }
-    else {
-        SDL_SetWindowFullscreen(wnd, on ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
     }
 
     if (on_fullscreen_changed_callback != NULL && call_callback) {
@@ -196,6 +187,9 @@ int test_vsync(void) {
 }
 
 static void gfx_sdl_init(const char *game_name, bool start_in_fullscreen) {
+    window_width = DESIRED_SCREEN_WIDTH;
+    window_height = DESIRED_SCREEN_HEIGHT;
+
     SDL_Init(SDL_INIT_VIDEO);
 
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
@@ -210,7 +204,7 @@ static void gfx_sdl_init(const char *game_name, bool start_in_fullscreen) {
     wnd = SDL_CreateWindow(title,
             SDL_WINDOWPOS_UNDEFINED_DISPLAY(configDefaultMonitor-1),
             SDL_WINDOWPOS_UNDEFINED_DISPLAY(configDefaultMonitor-1),
-            DESIRED_SCREEN_WIDTH, DESIRED_SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+            window_width, window_height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
     if (start_in_fullscreen) {
         set_fullscreen(true, false);
@@ -268,7 +262,7 @@ static void gfx_sdl_main_loop(void (*run_one_game_iter)(void)) {
 
 static void gfx_sdl_get_dimensions(uint32_t *width, uint32_t *height) {
     int w, h;
-    SDL_GetWindowSize(wnd, &w, &h);
+    SDL_GL_GetDrawableSize(wnd, &w, &h);
     *width = w;
     *height = h;
 }
@@ -315,6 +309,13 @@ static void gfx_sdl_handle_events(void) {
                 gfx_sdl_onkeyup(event.key.keysym.scancode);
                 break;
 #endif
+            case SDL_WINDOWEVENT:
+                if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED && (SDL_GetWindowFlags(SDL_GetWindowFromID(event.window.windowID)) & SDL_WINDOW_FULLSCREEN) == 0) {
+                    window_width = event.window.data1;
+                    window_height = event.window.data2;
+                }
+                break;
+
             case SDL_QUIT:
                 exit(0);
                 break;
