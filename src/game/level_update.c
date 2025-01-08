@@ -860,6 +860,12 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 play_transition(WARP_TRANSITION_FADE_INTO_MARIO, 0x20, 0x00, 0x00, 0x00);
                 break;
 
+            case WARP_OP_CUSTOM_RESET:
+                sDelayedWarpTimer = 32;
+                sSourceWarpNodeId = WARP_NODE_F0;
+                play_transition(WARP_TRANSITION_FADE_INTO_MARIO, 0x20, 0x00, 0x00, 0x00);
+                break;
+
             case WARP_OP_DEATH:
                 if (save_file_get_flags() & SAVE_FLAG_HARDCORE_MODE) {
                     sDelayedWarpOp = WARP_OP_GAME_OVER;
@@ -1014,21 +1020,20 @@ void initiate_delayed_warp(void) {
                     break;
 
                 case WARP_OP_STAR_EXIT:
-                    if (restart_level_after_star()) {
-                        save_file_do_save(gCurrSaveFileNum - 1);
-                        warp_special(gCurrLevelNum);
-                    }
-                    else {
-                        warpNode = area_get_warp_node(sSourceWarpNodeId);
+                    warpNode = area_get_warp_node(sSourceWarpNodeId);
 
-                        initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
-                                    warpNode->node.destNode, sDelayedWarpArg);
+                    initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
+                                warpNode->node.destNode, sDelayedWarpArg);
 
-                        check_if_should_set_warp_checkpoint(&warpNode->node);
-                        if (sWarpDest.type != WARP_TYPE_CHANGE_LEVEL) {
-                            level_set_transition(2, NULL);
-                        }
+                    check_if_should_set_warp_checkpoint(&warpNode->node);
+                    if (sWarpDest.type != WARP_TYPE_CHANGE_LEVEL) {
+                        level_set_transition(2, NULL);
                     }
+                    break;
+
+                case WARP_OP_CUSTOM_RESET:
+                    save_file_do_save(gCurrSaveFileNum - 1);
+                    warp_special(gCurrLevelNum);
                     break;
 
                 default:

@@ -636,7 +636,7 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
 
             case 80:
                 if ((m->actionArg & 1) == 0) {
-                    level_trigger_warp(m, WARP_OP_STAR_EXIT);
+                    level_trigger_warp(m, restart_level_after_star() ? WARP_OP_CUSTOM_RESET : WARP_OP_STAR_EXIT);
                 } else {
 
                     // Ugly code ahead!

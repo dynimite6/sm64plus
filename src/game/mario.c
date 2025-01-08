@@ -1519,7 +1519,7 @@ void update_mario_health(struct MarioState *m) {
                         if ((!(save_file_get_flags() & SAVE_FLAG_HARD_MODE)) && (!gNoHealingMode)) {
                             m->health += 0x1A;
                         }
-                    } else if (!(save_file_get_flags() & SAVE_FLAG_DAREDEVIL_MODE)) {
+                    } else if (!(save_file_get_flags() & SAVE_FLAG_DAREDEVIL_MODE) && !gNoHealingMode) {
                         if (save_file_get_flags() & SAVE_FLAG_HARD_MODE) {
                             m->health -= (terrainIsSnow ? 4 : 2);
                         }
