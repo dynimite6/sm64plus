@@ -1046,7 +1046,7 @@ s32 act_twirl_land(struct MarioState *m) {
 
 s32 act_ground_pound_land(struct MarioState *m) {
     m->actionState = 1;
-    if (gFlashbackPound) {
+    if (configFlashbackGroundPound) {
         if (m->input & INPUT_OFF_FLOOR) {
             return set_mario_action(m, ACT_FREEFALL, 0);
         }
@@ -1064,7 +1064,7 @@ s32 act_ground_pound_land(struct MarioState *m) {
                 return set_mario_action(m, ACT_CROUCHING, 0);
             }
         }
-        else if ((gGroundPoundJump) && (gPlayer1Controller->buttonDown & A_BUTTON)) {
+        else if ((configGroundPoundJump) && (gPlayer1Controller->buttonDown & A_BUTTON)) {
             set_mario_action(m, ACT_DOUBLE_JUMP, 0);
             m->vel[1] = 60.0f;
             play_mario_sound(m, SOUND_ACTION_TERRAIN_HEAVY_LANDING, SOUND_MARIO_YAHOO);
@@ -1079,7 +1079,7 @@ s32 act_ground_pound_land(struct MarioState *m) {
         }
     }
     else {
-        if ((gGroundPoundJump) && (gPlayer1Controller->buttonPressed & A_BUTTON)) {
+        if ((configGroundPoundJump) && (gPlayer1Controller->buttonPressed & A_BUTTON)) {
             set_mario_action(m, ACT_DOUBLE_JUMP, 0);
             m->vel[1] = 60.0f;
             play_mario_sound(m, SOUND_ACTION_TERRAIN_HEAVY_LANDING, SOUND_MARIO_YAHOO);

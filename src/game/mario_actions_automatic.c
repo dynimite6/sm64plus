@@ -743,7 +743,7 @@ s32 act_in_cannon(struct MarioState *m) {
                 m->faceAngle[0] = 0;
             }
 
-            if (gFlexibleCannons) {
+            if (configFlexibleCannons) {
                 if (marioObj->oMarioCannonInputYaw > 0x10000) {
                     marioObj->oMarioCannonInputYaw = 0x10000;
                 }

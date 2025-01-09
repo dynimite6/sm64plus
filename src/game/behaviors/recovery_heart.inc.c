@@ -34,7 +34,7 @@ void bhv_recovery_heart_loop(void) {
         o->oSpinningHeartTotalSpin -= 0x10000;
     }
 
-    if (gNoHealingMode)
+    if (configNoHealingMode)
         obj_mark_for_deletion(o);
 
     o->oFaceAngleYaw += o->oAngleVelYaw;

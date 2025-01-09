@@ -271,7 +271,7 @@ void load_mario_area(void) {
 
     if (gCurrDemoInput == NULL) 
         gCanMirror = 1;
-    if (gEncoreMode)
+    if (configEncoreMode)
         gReimportTextures = 1;
 
     if (gCurrentArea->index == gMarioSpawnInfo->areaIndex) {
@@ -279,7 +279,7 @@ void load_mario_area(void) {
         spawn_objects_from_info(0, gMarioSpawnInfo);
     }
 
-    if (gGreenDemon > 1 && gCurrLevelNum != LEVEL_CASTLE && gCurrLevelNum != LEVEL_CASTLE_COURTYARD && gCurrLevelNum != LEVEL_CASTLE_GROUNDS && gCurrLevelNum != LEVEL_BOWSER_1 && gCurrLevelNum != LEVEL_BOWSER_2 && gCurrLevelNum != LEVEL_BOWSER_3) {
+    if (configGreenDemon > 1 && gCurrLevelNum != LEVEL_CASTLE && gCurrLevelNum != LEVEL_CASTLE_COURTYARD && gCurrLevelNum != LEVEL_CASTLE_GROUNDS && gCurrLevelNum != LEVEL_BOWSER_1 && gCurrLevelNum != LEVEL_BOWSER_2 && gCurrLevelNum != LEVEL_BOWSER_3) {
         spawn_object_relative(0, 0, 256, 0, gMarioObject, MODEL_1UP, bhvGreenDemon);
     }
 }
@@ -391,7 +391,7 @@ void render_game(void) {
 
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, SCREEN_WIDTH,
                       SCREEN_HEIGHT - BORDER_HEIGHT);
-        if (!gHideHud) {
+        if (!configHideHud) {
             render_hud();
         }
 

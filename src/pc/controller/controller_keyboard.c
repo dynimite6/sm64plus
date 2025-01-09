@@ -49,7 +49,7 @@ void keyboard_on_mouse_move(long x, long y) {
 }
 
 void keyboard_on_mouse_press(s8 left, s8 right, s8 middle, s8 wheel) {
-    if (!gMouseCam)
+    if (!configMouseCam)
         return;
         
     if (left > 0)
@@ -116,11 +116,11 @@ static void keyboard_init(void) {
 
 static void keyboard_read(OSContPad *pad) {
     // Camera movement with mouse
-    if (gMouseCam) {
+    if (configMouseCam) {
         if (mouse_x != 0)
-            pad->stick2_x = mouse_x*gMouseSensitivity;
+            pad->stick2_x = mouse_x*configMouseSensitivity;
         if (mouse_y != 0)
-            pad->stick2_y = mouse_y*gMouseSensitivity;
+            pad->stick2_y = mouse_y*configMouseSensitivity;
         if (mouse_wheel < -1) {
             keyboard_buttons_down &= ~configMouseWheelDown;
             mouse_wheel = 0;

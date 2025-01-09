@@ -301,7 +301,7 @@ void handle_power_meter_actions(s16 numHealthWedges) {
 void render_hud_power_meter(void) {
     s16 shownHealthWedges = gHudDisplay.wedges;
 
-    if ((configHudLayout < 2) && (!gAlwaysShowHealth)) {
+    if ((configHudLayout < 2) && (!configAlwaysShowHealth)) {
         if (sPowerMeterHUD.animation != POWER_METER_HIDING) {
             handle_power_meter_actions(shownHealthWedges);
         }
@@ -330,7 +330,7 @@ void render_hud_power_meter(void) {
 
     render_dl_power_meter(shownHealthWedges);
 
-    if ((configHudLayout < 2) && (!gAlwaysShowHealth)) {
+    if ((configHudLayout < 2) && (!configAlwaysShowHealth)) {
         sPowerMeterVisibleTimer += 1;
     }
 }
@@ -790,7 +790,7 @@ void render_hud(void) {
             render_hud_cannon_reticle();
         }
 
-        if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES && !(save_file_get_flags() & SAVE_FLAG_HARDCORE_MODE) && gLifeMode != 1) {
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES && !(save_file_get_flags() & SAVE_FLAG_HARDCORE_MODE) && configLifeMode != 1) {
             render_hud_mario_lives();
         }
 
@@ -816,7 +816,7 @@ void render_hud(void) {
             render_hud_timer();
         }
 
-        if (gHudStars && gCurrDemoInput == NULL
+        if (configHudStars && gCurrDemoInput == NULL
             && gCurrLevelNum != LEVEL_CASTLE_GROUNDS && gCurrLevelNum != LEVEL_CASTLE && gCurrLevelNum != LEVEL_CASTLE_COURTYARD
             && gCurrLevelNum != LEVEL_BOWSER_1 && gCurrLevelNum != LEVEL_BOWSER_2 && gCurrLevelNum != LEVEL_BOWSER_3 && gCurrLevelNum != LEVEL_ENDING)
         {
@@ -829,7 +829,7 @@ void render_hud(void) {
                 render_hud_level_stars(2);
             }
             else {
-                render_hud_level_stars(6 + (gShow100CoinStar || (save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1) & (1 << 6))));
+                render_hud_level_stars(6 + (configShow100CoinStar || (save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1) & (1 << 6))));
             }
         }
 

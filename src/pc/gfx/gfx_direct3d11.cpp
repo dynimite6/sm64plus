@@ -598,7 +598,7 @@ static void gfx_d3d11_draw_triangles(float buf_vbo[], size_t buf_vbo_len, size_t
         D3D11_RASTERIZER_DESC rasterizer_desc;
         ZeroMemory(&rasterizer_desc, sizeof(D3D11_RASTERIZER_DESC));
 
-        rasterizer_desc.FillMode = gWireframeMode ? D3D11_FILL_WIREFRAME : D3D11_FILL_SOLID;
+        rasterizer_desc.FillMode = configWireframeMode ? D3D11_FILL_WIREFRAME : D3D11_FILL_SOLID;
         rasterizer_desc.CullMode = D3D11_CULL_NONE;
         rasterizer_desc.FrontCounterClockwise = true;
         rasterizer_desc.DepthBias = 0;

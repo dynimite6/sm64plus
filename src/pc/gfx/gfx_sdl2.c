@@ -210,7 +210,7 @@ static void gfx_sdl_init(const char *game_name, bool start_in_fullscreen) {
         set_fullscreen(true, false);
     }
 
-    if (gMouseCam) {
+    if (configMouseCam) {
         SDL_SetRelativeMouseMode(true);
     }
 
@@ -254,7 +254,7 @@ static void gfx_sdl_set_keyboard_callbacks(bool (*on_key_down)(int scancode), bo
 static void gfx_sdl_main_loop(void (*run_one_game_iter)(void)) {
     while (1) {
         run_one_game_iter();
-        if (gMouseCam) {
+        if (configMouseCam) {
             SDL_SetRelativeMouseMode((SDL_GetWindowFlags(wnd) & SDL_WINDOW_INPUT_FOCUS) == SDL_WINDOW_INPUT_FOCUS);
         }
     }

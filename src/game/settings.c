@@ -169,7 +169,6 @@ unsigned int configGraphicsBackend = 0;
 float configOverallVolume = 1;
 float configSeqVolume[] = {1, 1, 1};
 
-// TODO (Mors): Rename these with a config prefix.
 unsigned int configFrameRate = 1;
 float configDrawDistanceMultiplier = 0.0f;
 unsigned int configLevelOfDetail = 2;
@@ -218,65 +217,65 @@ float configAdditionalFOV = 0.0f;
 s8 configQuitOption = 1;
 unsigned int configHudLayout = 2;
 s8 config4by3Hud = 0;
-s8 gHudStars = 0;
+s8 configHudStars = 0;
 s8 configAddZeroes = 0;
-s8 gShow100CoinStar = 0;
-s8 gAlwaysShowHealth = 0;
-s8 gHUDFiltering = 0;
-s8 gHideHud = 0;
+s8 configShow100CoinStar = 0;
+s8 configAlwaysShowHealth = 0;
+s8 configHUDFiltering = 0;
+s8 configHideHud = 0;
 
-s8 gMouseCam = 1;
-float gMouseSensitivity = 4.0f;
+s8 configMouseCam = 1;
+float configMouseSensitivity = 4.0f;
 unsigned int configMouseLeft = A_BUTTON;
 unsigned int configMouseRight = B_BUTTON;
 unsigned int configMouseMiddle = Z_TRIG;
 unsigned int configMouseWheelUp = U_CBUTTONS;
 unsigned int configMouseWheelDown = D_CBUTTONS;
 
-s8 gWallSliding = 1;
-s8 gGroundPoundJump = 0;
-s8 gSunshineDive = 0;
-s8 gOdysseyDive = 0;
+s8 configWallSliding = 1;
+s8 configGroundPoundJump = 0;
+s8 configSunshineDive = 0;
+s8 configOdysseyDive = 0;
 s8 configRolling = 0;
-s8 gFlashbackPound = 0;
+s8 configFlashbackGroundPound = 0;
 
 s8 configUnusedPyramidCutscene = 1;
 s8 configRestoreUnusedSounds = 1;
-s8 gPenguinSadEyes = 1;
-s8 gTwirlTripleJump = 0;
+s8 configPenguinSadEyes = 1;
+s8 configTwirlTripleJump = 0;
 s8 configBetaLikeCamera = 0;
-s8 gSpawnSparkles = 0;
-s8 gReplaceKeysWithStars = 0;
+s8 configSpawnSparkles = 0;
+s8 configReplaceKeysWithStars = 0;
 
-unsigned int gLifeMode = 0;
-unsigned int gEncoreMode = 0;
-unsigned int gGreenDemon = 0;
-s8 gNoHealingMode = 0;
-s8 gHardSave = 0;
-s8 gDaredevilSave = 0;
-s8 gHardcoreSave = 0;
-s8 gCasualMode = 0;
+unsigned int configLifeMode = 0;
+unsigned int configEncoreMode = 0;
+unsigned int configGreenDemon = 0;
+s8 configNoHealingMode = 0;
+s8 configHardSave = 0;
+s8 configDaredevilSave = 0;
+s8 configHardcoreSave = 0;
+s8 configCasualMode = 0;
 s8 configInvisibleMode = 0;
 
-s8 gDebugMovementMode = 0;
-s8 gDebugCapChanger = 0;
+s8 configDebugMovementMode = 0;
+s8 configDebugCapChanger = 0;
 s8 configDebugObjectSpawner = 0;
 unsigned int configMoonJump = 0;
 s8 configEasyBowserThrows = 0;
 unsigned int configBLJEverywhere = 0;
 s8 configGodMode = 0;
 s8 configHyperspeedMode = 0;
-s8 gFlexibleCannons = 0;
+s8 configFlexibleCannons = 0;
 unsigned int configCoinStarCoins = 100;
 
 s8 configRockPaperScissors = 0;
 s8 configAngryPenguin = 0;
-s8 gPaperMode = 0;
-s8 gFXMode = 0;
+s8 configPaperMode = 0;
+s8 configFXMode = 0;
 #if defined(_WIN32) || defined(_WIN64)
-s8 gWireframeMode = 0;
+s8 configWireframeMode = 0;
 #endif
-s8 gDisableLighting = 0;
+s8 configDisableLighting = 0;
 
 unsigned int configColorPalette = 2;
 

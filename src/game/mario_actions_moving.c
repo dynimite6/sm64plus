@@ -1532,7 +1532,7 @@ s32 act_slide_kick_slide(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
-        if (gFlashbackPound)
+        if (configFlashbackGroundPound)
             play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, 0);
         return set_jumping_action(m, ACT_FORWARD_ROLLOUT, 0);
     }
@@ -1566,7 +1566,7 @@ s32 stomach_slide_action(struct MarioState *m, u32 stopAction, u32 airAction, s3
 #if ENABLE_RUMBLE
             queue_rumble_data(5, 80);
 #endif
-            if (gFlashbackPound)
+            if (configFlashbackGroundPound)
                 play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, 0);
             return drop_and_set_mario_action(
                 m, m->forwardVel >= 0.0f ? ACT_FORWARD_ROLLOUT : ACT_BACKWARD_ROLLOUT, 0);
@@ -1604,13 +1604,13 @@ s32 act_dive_slide(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
-        if (gSunshineDive && m->input & INPUT_B_PRESSED) {
+        if (configSunshineDive && m->input & INPUT_B_PRESSED) {
             mario_set_forward_vel(m, 20.0f);
             m->vel[1] = 21.0f;
             return set_mario_action(m, ACT_DIVE, 0);
         }
         else {
-            if (gFlashbackPound)
+            if (configFlashbackGroundPound)
                 play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, 0);
             return set_mario_action(m, m->forwardVel > 0.0f ? ACT_FORWARD_ROLLOUT : ACT_BACKWARD_ROLLOUT,
                                     0);

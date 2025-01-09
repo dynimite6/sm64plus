@@ -546,7 +546,7 @@ s32 act_double_jump(struct MarioState *m) {
 }
 
 s32 act_triple_jump(struct MarioState *m) {
-    if (gTwirlTripleJump) {
+    if (configTwirlTripleJump) {
         play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, SOUND_MARIO_YAHOO);
         return set_mario_action(m, ACT_TWIRLING, 0);
     }
@@ -1105,7 +1105,7 @@ s32 act_ground_pound(struct MarioState *m) {
         }
     }
 
-    if (gOdysseyDive && m->input & INPUT_B_PRESSED) {
+    if (configOdysseyDive && m->input & INPUT_B_PRESSED) {
         set_mario_action(m, ACT_DIVE, 0);
         mario_set_forward_vel(m, 40.0f);
         m->vel[1] = 28;
@@ -1278,7 +1278,7 @@ u32 common_air_knockback_step(struct MarioState *m, u32 landAction, u32 hardFall
 s32 check_wall_kick(struct MarioState *m) {
     if ((m->input & INPUT_A_PRESSED) && m->wallKickTimer != 0 && m->prevAction == ACT_AIR_HIT_WALL) {
         m->faceAngle[1] += 0x8000;
-        if (gWallSliding) {
+        if (configWallSliding) {
             m->particleFlags |= PARTICLE_VERTICAL_STAR;
         }
         return set_mario_action(m, ACT_WALL_KICK_AIR, 0);
@@ -1475,7 +1475,7 @@ s32 act_air_hit_wall(struct MarioState *m) {
     if (m->heldObj != NULL) {
         mario_drop_held_object(m);
     }
-    if (gWallSliding) {
+    if (configWallSliding) {
         if (++(m->actionTimer) <= 2) {
             if (m->input & INPUT_A_PRESSED) {
                 m->vel[1] = 52.0f;
@@ -1539,7 +1539,7 @@ s32 act_forward_rollout(struct MarioState *m) {
         m->actionState = 1;
     }
 
-    if (!gFlashbackPound)
+    if (!configFlashbackGroundPound)
         play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, 0);
 
     update_air_without_turn(m, 0);
@@ -1581,7 +1581,7 @@ s32 act_backward_rollout(struct MarioState *m) {
         m->actionState = 1;
     }
 
-    if (!gFlashbackPound)
+    if (!configFlashbackGroundPound)
         play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, 0);
 
     update_air_without_turn(m, 0);
@@ -2323,7 +2323,7 @@ s32 mario_execute_airborne_action(struct MarioState *m) {
     }
     /* clang-format on */
 
-    if ((gDebugMovementMode) && (gPlayer1Controller->buttonDown & L_TRIG)) {
+    if ((configDebugMovementMode) && (gPlayer1Controller->buttonDown & L_TRIG)) {
         set_mario_action(gMarioState, ACT_DEBUG_FREE_MOVE, 0);
     }
 

@@ -226,7 +226,7 @@ static void toggle_borderless_window_full_screen(bool enable, bool call_callback
             ShowWindow(dxgi.h_wnd, SW_RESTORE);
         }
 
-        if (!gMouseCam) {
+        if (!configMouseCam) {
             ShowCursor(TRUE);
             mouse_visible = true;
         }
@@ -419,7 +419,7 @@ static void gfx_dxgi_init(const char *game_name, bool start_in_fullscreen) {
     if (start_in_fullscreen) {
         toggle_borderless_window_full_screen(true, false);
     }
-    if (start_in_fullscreen || gMouseCam) {
+    if (start_in_fullscreen || configMouseCam) {
         ShowCursor(FALSE);
         mouse_visible = false;
     }
@@ -471,7 +471,7 @@ static uint64_t qpc_to_us(uint64_t qpc) {
 static bool gfx_dxgi_start_frame(void) {
 
     // Before rendering, center the mouse cursor and set the mouse movement variables.
-    if (gMouseCam) {
+    if (configMouseCam) {
         if (mouse_capture) {
             POINT cursorPoint;
             GetCursorPos(&cursorPoint);

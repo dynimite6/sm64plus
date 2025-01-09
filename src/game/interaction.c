@@ -746,7 +746,7 @@ void reset_mario_pitch(struct MarioState *m) {
 
 u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct Object *o) {
     m->numCoins += o->oDamageOrCoinValue;
-    if (!gNoHealingMode)
+    if (!configNoHealingMode)
         m->healCounter += 4 * o->oDamageOrCoinValue;
 
     o->oInteractStatus = INT_STATUS_INTERACTED;
@@ -765,7 +765,7 @@ u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct Object *
 }
 
 u32 interact_water_ring(struct MarioState *m, UNUSED u32 interactType, struct Object *o) {
-    if (!gNoHealingMode)
+    if (!configNoHealingMode)
         m->healCounter += 4 * o->oDamageOrCoinValue;
     o->oInteractStatus = INT_STATUS_INTERACTED;
     return FALSE;

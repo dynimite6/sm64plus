@@ -1263,7 +1263,7 @@ void squish_mario_model(struct MarioState *m) {
 
             vec3f_set(m->marioObj->header.gfx.scale, 1.4f, 0.4f, 1.4f);
         }
-        if (gPaperMode) {
+        if (configPaperMode) {
             m->marioObj->header.gfx.scale[0] *= 1.0625f;
             m->marioObj->header.gfx.scale[1] *= 1.0625f;
             m->marioObj->header.gfx.scale[2] *= 0.03125f;
@@ -1516,14 +1516,14 @@ void update_mario_health(struct MarioState *m) {
                     // when in snow terrains lose 3 health.
                     // If using the debug level select, do not lose any HP to water.
                     if ((m->pos[1] >= (m->waterLevel - 140)) && !terrainIsSnow) {
-                        if ((!(save_file_get_flags() & SAVE_FLAG_HARD_MODE)) && (!gNoHealingMode)) {
+                        if ((!(save_file_get_flags() & SAVE_FLAG_HARD_MODE)) && (!configNoHealingMode)) {
                             m->health += 0x1A;
                         }
-                    } else if (!(save_file_get_flags() & SAVE_FLAG_DAREDEVIL_MODE) && !gNoHealingMode) {
+                    } else if (!(save_file_get_flags() & SAVE_FLAG_DAREDEVIL_MODE) && !configNoHealingMode) {
                         if (save_file_get_flags() & SAVE_FLAG_HARD_MODE) {
                             m->health -= (terrainIsSnow ? 4 : 2);
                         }
-                        else if (gCasualMode) {
+                        else if (configCasualMode) {
                             if (terrainIsSnow)
                                 m->health -= 1;
                         }
@@ -1540,7 +1540,7 @@ void update_mario_health(struct MarioState *m) {
             m->healCounter--;
         }
         if (m->hurtCounter > 0) {
-            if (gCasualMode)
+            if (configCasualMode)
                 m->health -= 0x20;
             else
                 m->health -= 0x40;
@@ -1776,7 +1776,7 @@ void func_sh_8025574C(void) {
 s32 execute_mario_action(UNUSED struct Object *o) {
     s32 inLoop = TRUE;
 
-    if (gDebugCapChanger) {
+    if (configDebugCapChanger) {
 
         debug_update_mario_cap(CONT_LEFT, MARIO_WING_CAP, 1800, SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP));
         debug_update_mario_cap(CONT_UP, MARIO_METAL_CAP, 600, SEQUENCE_ARGS(4, SEQ_EVENT_METAL_CAP));
@@ -2020,7 +2020,7 @@ void init_mario_from_save_file(void) {
     gMarioState->numKeys = 0;
 
     s8 savedLives = save_file_get_num_lives();
-    gMarioState->numLives = ((savedLives > 0) ? savedLives : (gLifeMode ? 0 : 4));
+    gMarioState->numLives = ((savedLives > 0) ? savedLives : (configLifeMode ? 0 : 4));
     
     if (save_file_get_flags() & SAVE_FLAG_DAREDEVIL_MODE) {
         gMarioState->health = 0x180;

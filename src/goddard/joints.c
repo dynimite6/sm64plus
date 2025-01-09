@@ -117,7 +117,7 @@ void grabbable_joint_update_func(struct ObjJoint *self) {
     self->mat128[3][2] += self->velocity.z;
 
     if (self->header.drawFlags & OBJ_PICKED 
-        && (!gMouseCam || (ABS(gPlayer1Controller->controllerData->stick2_x) < 0.1 && ABS(gPlayer1Controller->controllerData->stick2_y) < 0.1))) {
+        && (!configMouseCam || (ABS(gPlayer1Controller->controllerData->stick2_x) < 0.1 && ABS(gPlayer1Controller->controllerData->stick2_y) < 0.1))) {
         gGdCtrl.csrX -= (gGdCtrl.csrX - gGdCtrl.dragStartX) * 0.2;
         gGdCtrl.csrY -= (gGdCtrl.csrY - gGdCtrl.dragStartY) * 0.2;
     }

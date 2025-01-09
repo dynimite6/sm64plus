@@ -96,7 +96,7 @@ struct DemoInput gRecordedDemoInput = { 0 };
 // ----------------------------------------------------------------------------------------------------
 
 s8 get_mirror() {
-    if (gEncoreMode == 0 || gEncoreMode == 2 || gCurrCourseNum == COURSE_CAKE_END) {
+    if (configEncoreMode == 0 || configEncoreMode == 2 || gCurrCourseNum == COURSE_CAKE_END) {
         return 0;
     }
 
@@ -104,7 +104,7 @@ s8 get_mirror() {
 }
 
 s16 get_palette() {
-    if (gEncoreMode == 0 || gEncoreMode == 3 || !gCanMirror) {
+    if (configEncoreMode == 0 || configEncoreMode == 3 || !gCanMirror) {
         return 0;
     }
 
@@ -627,7 +627,7 @@ void read_controller_inputs(void) {
             controller->rawStickX = controller->controllerData->stick_x;
             controller->rawStickY = controller->controllerData->stick_y;
 
-            if (configDpadControls && !gDebugMovementMode) {
+            if (configDpadControls && !configDebugMovementMode) {
                 controller->rawStickX += (((controller->buttonDown & R_JPAD) > 0) - ((controller->buttonDown & L_JPAD) > 0))*80;
                 controller->rawStickY += (((controller->buttonDown & U_JPAD) > 0) - ((controller->buttonDown & D_JPAD) > 0))*80;
             }

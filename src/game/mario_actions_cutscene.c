@@ -1110,10 +1110,10 @@ s32 act_spawn_spin_airborne(struct MarioState *m) {
     // landed on floor, play spawn land animation
     if (perform_air_step(m, 0.0) == AIR_STEP_LANDED) {
         play_mario_landing_sound(m, SOUND_ACTION_TERRAIN_LANDING);
-        if (gSpawnSparkles)
+        if (configSpawnSparkles)
             tempActionState = m->actionState;
         set_mario_action(m, ACT_SPAWN_SPIN_LANDING, 0);
-        if (gSpawnSparkles)
+        if (configSpawnSparkles)
             m->actionState = tempActionState;
     }
 
@@ -1125,12 +1125,12 @@ s32 act_spawn_spin_airborne(struct MarioState *m) {
     }
 
     // under 300 units above floor, enter freefall animation
-    else if (!gSpawnSparkles || m->actionState == 1) {
+    else if (!configSpawnSparkles || m->actionState == 1) {
         m->actionState = 1;
         set_mario_animation(m, MARIO_ANIM_GENERAL_FALL);
     }
 
-    if (gSpawnSparkles)
+    if (configSpawnSparkles)
         m->particleFlags |= PARTICLE_SPARKLES;
 
     return FALSE;
@@ -1138,7 +1138,7 @@ s32 act_spawn_spin_airborne(struct MarioState *m) {
 
 s32 act_spawn_spin_landing(struct MarioState *m) {
     
-    if (!gSpawnSparkles || m->actionState == 1) {
+    if (!configSpawnSparkles || m->actionState == 1) {
         stop_and_set_height_to_floor(m);
         set_mario_animation(m, MARIO_ANIM_GENERAL_LAND);
         if (is_anim_at_end(m)) {
@@ -1146,7 +1146,7 @@ s32 act_spawn_spin_landing(struct MarioState *m) {
             set_mario_action(m, ACT_IDLE, 0);
         }
     }
-    else if (gSpawnSparkles) {
+    else if (configSpawnSparkles) {
         m->vel[1] = 32.0f;
         set_mario_action(m, ACT_SPAWN_SPIN_AIRBORNE, 1);
         m->actionState = 1;
@@ -1290,7 +1290,7 @@ s32 act_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
-        if (gLifeMode) {
+        if (configLifeMode) {
             m->numLives++;
         }
         else if (m->numLives > 0) {
@@ -1312,7 +1312,7 @@ s32 act_unused_death_exit(struct MarioState *m) {
 #else
         play_sound(SOUND_MARIO_OOOF2, m->marioObj->header.gfx.cameraToObject);
 #endif
-        if (gLifeMode) {
+        if (configLifeMode) {
             m->numLives++;
         }
         else if (m->numLives > 0) {
@@ -1337,7 +1337,7 @@ s32 act_falling_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
-        if (gLifeMode) {
+        if (configLifeMode) {
             m->numLives++;
         }
         else if (m->numLives > 0) {
@@ -1390,7 +1390,7 @@ s32 act_special_death_exit(struct MarioState *m) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
-        if (gLifeMode) {
+        if (configLifeMode) {
             m->numLives++;
         }
         else if (m->numLives > 0) {

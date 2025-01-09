@@ -5,11 +5,11 @@ void bhv_1up_interact(void) {
 
     if (obj_check_if_collided_with_object(o, gMarioObject) == 1) {
         play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
-        if (gGreenDemon != 0) {
+        if (configGreenDemon != 0) {
             gMarioState->health = 0;
         }
-        else if (gLifeMode || save_file_get_flags() & SAVE_FLAG_HARDCORE_MODE) {
-            if (!gNoHealingMode) {
+        else if (configLifeMode || save_file_get_flags() & SAVE_FLAG_HARDCORE_MODE) {
+            if (!configNoHealingMode) {
                 gMarioState->healCounter += 31.75;
                 if (gMarioState->healCounter > 31.75)
                     gMarioState->healCounter = 31.75;
@@ -324,7 +324,7 @@ void bhv_1up_green_demon_loop(void) {
             break;
 
         case 1:
-            pole_1up_move_towards_mario((gGreenDemon > 2) ? 30.0f : 20.0f);
+            pole_1up_move_towards_mario((configGreenDemon > 2) ? 30.0f : 20.0f);
             sp26 = object_step();
             break;
 
@@ -335,7 +335,7 @@ void bhv_1up_green_demon_loop(void) {
 
             one_up_loop_in_air();
 
-            if (o->oTimer == ((gGreenDemon > 2) ? 105 : 90)) {
+            if (o->oTimer == ((configGreenDemon > 2) ? 105 : 90)) {
                 cur_obj_become_tangible();
                 o->oAction = 1;
                 o->oForwardVel = 10.0f;

@@ -285,7 +285,7 @@ static bool gfx_texture_cache_lookup(int tile, struct TextureHashmapNode **n, co
     while (*node != NULL && *node - gfx_texture_cache.pool < (int)gfx_texture_cache.pool_pos) {
         if ((*node)->texture_addr == orig_addr && (*node)->fmt == fmt && (*node)->siz == siz) {
             gfx_rapi->select_texture(tile, (*node)->texture_id);
-            if (gEncoreMode)
+            if (configEncoreMode)
                 (*node)->linear_filter = (get_palette() == 12);
             *n = *node;
             return true;
@@ -1005,7 +1005,7 @@ static void gfx_sp_vertex(size_t n_vertices, size_t dest_index, const Vtx *verti
         short U = v->tc[0] * rsp.texture_scaling_factor.s >> 16;
         short V = v->tc[1] * rsp.texture_scaling_factor.t >> 16;
 
-        if (gFXMode) {
+        if (configFXMode) {
             U = 1;
             V = 1;
         }
@@ -1075,7 +1075,7 @@ static void gfx_sp_vertex(size_t n_vertices, size_t dest_index, const Vtx *verti
 
             for (int i = 0; i < rsp.current_num_lights - 1; i++) {
                 float intensity = 0;
-                if (gDisableLighting) {
+                if (configDisableLighting) {
                     intensity = 0.5f;
                 }
                 else {
@@ -1147,7 +1147,7 @@ static void gfx_sp_vertex(size_t n_vertices, size_t dest_index, const Vtx *verti
                 doty += vn->n[1] * rsp.current_lookat_coeffs[1][1];
                 doty += vn->n[2] * rsp.current_lookat_coeffs[1][2];
 
-                if (gFXMode || gDisableLighting) {
+                if (configFXMode || configDisableLighting) {
                     U = 1;
                     V = 1;
                 }
@@ -1328,7 +1328,7 @@ static void gfx_sp_tri1(uint8_t vtx1_idx, uint8_t vtx2_idx, uint8_t vtx3_idx) {
                 import_texture(i);
                 rdp.textures_changed[i] = false;
             }
-            bool linear_filter = (rdp.other_mode_h & (3U << G_MDSFT_TEXTFILT)) != G_TF_POINT || gHUDFiltering;
+            bool linear_filter = (rdp.other_mode_h & (3U << G_MDSFT_TEXTFILT)) != G_TF_POINT || configHUDFiltering;
             if (linear_filter != rendering_state.textures[i]->linear_filter || rdp.texture_tile.cms != rendering_state.textures[i]->cms || rdp.texture_tile.cmt != rendering_state.textures[i]->cmt) {
                 gfx_flush();
                 gfx_rapi->set_sampler_parameters(i, linear_filter, rdp.texture_tile.cms, rdp.texture_tile.cmt);

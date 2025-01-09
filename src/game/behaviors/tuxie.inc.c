@@ -321,7 +321,7 @@ Gfx *geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *
 
         // Sad penguin eyes. Very sad times.
         // Blinking looks weird with these eyes so it's disabled.
-        if ((gPenguinSadEyes) && (obj->oAction != 2) && (obj->behavior == segmented_to_virtual(bhvTuxiesMother))) {
+        if ((configPenguinSadEyes) && (obj->oAction != 2) && (obj->behavior == segmented_to_virtual(bhvTuxiesMother))) {
             switchCase->selectedCase = 4;
         }
         else {

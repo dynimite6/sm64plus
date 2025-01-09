@@ -67,65 +67,65 @@ extern float configAdditionalFOV;
 extern s8 configQuitOption;
 extern unsigned int configHudLayout;
 extern s8 config4by3Hud;
-extern s8 gHudStars;
+extern s8 configHudStars;
 extern s8 configAddZeroes;
-extern s8 gShow100CoinStar;
-extern s8 gAlwaysShowHealth;
-extern s8 gHUDFiltering;
-extern s8 gHideHud;
+extern s8 configShow100CoinStar;
+extern s8 configAlwaysShowHealth;
+extern s8 configHUDFiltering;
+extern s8 configHideHud;
 
-extern s8 gMouseCam;
-extern float gMouseSensitivity;
+extern s8 configMouseCam;
+extern float configMouseSensitivity;
 extern unsigned int configMouseLeft;
 extern unsigned int configMouseRight;
 extern unsigned int configMouseMiddle;
 extern unsigned int configMouseWheelUp;
 extern unsigned int configMouseWheelDown;
 
-extern s8 gWallSliding;
-extern s8 gGroundPoundJump;
-extern s8 gSunshineDive;
-extern s8 gOdysseyDive;
+extern s8 configWallSliding;
+extern s8 configGroundPoundJump;
+extern s8 configSunshineDive;
+extern s8 configOdysseyDive;
 extern s8 configRolling;
-extern s8 gFlashbackPound;
+extern s8 configFlashbackGroundPound;
 
 extern s8 configUnusedPyramidCutscene;
 extern s8 configRestoreUnusedSounds;
-extern s8 gPenguinSadEyes;
-extern s8 gTwirlTripleJump;
+extern s8 configPenguinSadEyes;
+extern s8 configTwirlTripleJump;
 extern s8 configBetaLikeCamera;
-extern s8 gSpawnSparkles;
-extern s8 gReplaceKeysWithStars;
+extern s8 configSpawnSparkles;
+extern s8 configReplaceKeysWithStars;
 
-extern unsigned int gLifeMode;
-extern unsigned int gEncoreMode;
-extern unsigned int gGreenDemon;
-extern s8 gNoHealingMode;
-extern s8 gHardSave;
-extern s8 gDaredevilSave;
-extern s8 gHardcoreSave;
-extern s8 gCasualMode;
+extern unsigned int configLifeMode;
+extern unsigned int configEncoreMode;
+extern unsigned int configGreenDemon;
+extern s8 configNoHealingMode;
+extern s8 configHardSave;
+extern s8 configDaredevilSave;
+extern s8 configHardcoreSave;
+extern s8 configCasualMode;
 extern s8 configInvisibleMode;
 
-extern s8 gDebugMovementMode;
-extern s8 gDebugCapChanger;
+extern s8 configDebugMovementMode;
+extern s8 configDebugCapChanger;
 extern s8 configDebugObjectSpawner;
 extern unsigned int configMoonJump;
 extern s8 configEasyBowserThrows;
 extern unsigned int configBLJEverywhere;
 extern s8 configGodMode;
 extern s8 configHyperspeedMode;
-extern s8 gFlexibleCannons;
+extern s8 configFlexibleCannons;
 extern unsigned int configCoinStarCoins;
 
 extern s8 configRockPaperScissors;
 extern s8 configAngryPenguin;
-extern s8 gPaperMode;
-extern s8 gFXMode;
+extern s8 configPaperMode;
+extern s8 configFXMode;
 #if defined(_WIN32) || defined(_WIN64)
-extern s8 gWireframeMode;
+extern s8 configWireframeMode;
 #endif
-extern s8 gDisableLighting;
+extern s8 configDisableLighting;
 
 extern unsigned int configColorPalette;
 

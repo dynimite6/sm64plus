@@ -487,7 +487,7 @@ static void gfx_direct3d12_draw_triangles(float buf_vbo[], size_t buf_vbo_len, s
                 desc.RasterizerState.SlopeScaledDepthBias = -2.0f;
             }
             desc.RasterizerState.CullMode = D3D12_CULL_MODE_NONE;
-            desc.RasterizerState.FillMode = gWireframeMode ? D3D12_FILL_MODE_WIREFRAME : D3D12_FILL_MODE_SOLID;
+            desc.RasterizerState.FillMode = configWireframeMode ? D3D12_FILL_MODE_WIREFRAME : D3D12_FILL_MODE_SOLID;
             if (prg->shader_id & SHADER_OPT_ALPHA) {
                 D3D12_BLEND_DESC bd = {};
                 bd.AlphaToCoverageEnable = FALSE;

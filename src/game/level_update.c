@@ -871,7 +871,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                     sDelayedWarpOp = WARP_OP_GAME_OVER;
                     save_file_erase(gCurrSaveFileNum - 1);
                 }
-                if (m->numLives == 0 && gLifeMode == 0) {
+                if (m->numLives == 0 && configLifeMode == 0) {
                     sDelayedWarpOp = WARP_OP_GAME_OVER;
                 }
                 sDelayedWarpTimer = 48;
@@ -887,7 +887,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                         sDelayedWarpOp = WARP_OP_GAME_OVER;
                         save_file_erase(gCurrSaveFileNum - 1);
                     }
-                    else if (m->numLives == 0 && gLifeMode == 0) {
+                    else if (m->numLives == 0 && configLifeMode == 0) {
                         sDelayedWarpOp = WARP_OP_GAME_OVER;
                     }
                     else {
@@ -1379,14 +1379,14 @@ s32 init_level(void) {
                             val4 = 1;
                         }
                     }
-                    if (gHardSave) {
+                    if (configHardSave) {
                         gMarioState->flags &= ~(MARIO_NORMAL_CAP | MARIO_CAP_ON_HEAD);
                         save_file_set_flags(SAVE_FLAG_HARD_MODE);
                     }
-                    if (gHardcoreSave) {
+                    if (configHardcoreSave) {
                         save_file_set_flags(SAVE_FLAG_HARDCORE_MODE);
                     }
-                    if (gDaredevilSave) {
+                    if (configDaredevilSave) {
                         save_file_set_flags(SAVE_FLAG_DAREDEVIL_MODE);
                     }
                 }

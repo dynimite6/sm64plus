@@ -2455,12 +2455,12 @@ void parse_p1_controller(void) {
     currInputs = &sGdContPads[0];
     prevInputs = &sPrevFrameCont[0];
     // stick values
-    gdctrl->stickXf = (f32) currInputs->stick_x + (gMouseCam ? currInputs->stick2_x : 0);
-    gdctrl->stickYf = (f32) currInputs->stick_y - (gMouseCam ? currInputs->stick2_y : 0);
+    gdctrl->stickXf = (f32) currInputs->stick_x + (configMouseCam ? currInputs->stick2_x : 0);
+    gdctrl->stickYf = (f32) currInputs->stick_y - (configMouseCam ? currInputs->stick2_y : 0);
     gdctrl->stickDeltaX = gdctrl->stickX;
     gdctrl->stickDeltaY = gdctrl->stickY;
-    gdctrl->stickX = (s32) currInputs->stick_x + (gMouseCam ? currInputs->stick2_x : 0);
-    gdctrl->stickY = (s32) currInputs->stick_y - (gMouseCam ? currInputs->stick2_y : 0);
+    gdctrl->stickX = (s32) currInputs->stick_x + (configMouseCam ? currInputs->stick2_x : 0);
+    gdctrl->stickY = (s32) currInputs->stick_y - (configMouseCam ? currInputs->stick2_y : 0);
     gdctrl->stickDeltaX -= gdctrl->stickX;
     gdctrl->stickDeltaY -= gdctrl->stickY;
     // button values (as bools)

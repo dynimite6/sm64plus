@@ -1683,8 +1683,8 @@ void handle_controller_cursor_input(void) {
     }
 
     // Move cursor
-    sCursorPos[0] += (rawStickX + (gMouseCam ? gPlayer1Controller->rawStick2X : 0)) / 8;
-    sCursorPos[1] += (rawStickY - (gMouseCam ? gPlayer1Controller->rawStick2Y : 0)) / 8;
+    sCursorPos[0] += (rawStickX + (configMouseCam ? gPlayer1Controller->rawStick2X : 0)) / 8;
+    sCursorPos[1] += (rawStickY - (configMouseCam ? gPlayer1Controller->rawStick2Y : 0)) / 8;
 
     // Stop cursor from going offscreen
     if (config4by3Hud || configForce4by3) {
