@@ -1,0 +1,84 @@
+Creating a simple 1v1 game in HTML involves using HTML for the structure, CSS for styling, and JavaScript for the game logic. Below is a basic example to get you started:
+
+HTML
+Copy the code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1v1 Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="player1" class="player">Player 1</div>
+        <div id="player2" class="player">Player 2</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+CSS (styles.css)
+Copy the code
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#game-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 50vh;
+    border: 2px solid #000;
+    position: relative;
+}
+
+.player {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+}
+
+#player1 {
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#player2 {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+JavaScript (script.js)
+Copy the code
+document.addEventListener('keydown', function(event) {
+    const player1 = document.getElementById('player1');
+    const player2 = document.getElementById('player2');
+    
+    switch(event.key) {
+        case 'w':
+            player1.style.top = `${player1.offsetTop - 10}px`;
+            break;
+        case 's':
+            player1.style.top = `${player1.offsetTop + 10}px`;
+            break;
+        case 'ArrowUp':
+            player2.style.top = `${player2.offsetTop - 10}px`;
+            break;
+        case 'ArrowDown':
+            player2.style.top = `${player2.offsetTop + 10}px`;
+            break;
+    }
+});
+
+
+This example sets up a basic 1v1 game where two players can move up and down using different keys (w and s for Player 1, ArrowUp and ArrowDown for Player 2). You can expand this by adding more features like collision detection, scoring, and more complex movements. Enjoy coding your game!
